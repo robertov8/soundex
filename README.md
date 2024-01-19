@@ -1,21 +1,62 @@
-# Soundex
+Soundex
+=======
 
-**TODO: Add description**
+An module for computing the Soundex codes of strings.
 
-## Installation
+Soundex is an algorithm for representing (mainly English) names as short phonetic codes. 
+A Soundex code begins with the first letter of the name, followed by three digits.
+They are typically used to match like-sounding names.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `soundex` to your list of dependencies in `mix.exs`:
+For more information, see [the Wikipedia entry](http://en.wikipedia.org/wiki/soundex).
+
+## Examples:
+
+    iex> Soundex.soundex("Morris")
+    "M620"
+    
+    iex> Soundex.soundex("Harris")
+    "H620"  
+
+    iex> Soundex.soundex("Morrison")
+    "M625"
+
+    iex> Soundex.soundex("Smith")
+    "S530"
+
+    iex> Soundex.soundex("Smithie")
+    "S530"           
+
+
+## Details
+
+Soundex only encodes letters from the English alphabet. So, for example, 
+punctuation in names is ignored:
+
+    iex> Soundex.soundex("O'Brien") == Soundex.soundex("OBrien")
+    true
+
+As are spaces:
+
+    iex> Soundex.soundex("Van Dyke") == Soundex.soundex("Vandyke")
+
+Unicode letters are also ignored:
+
+    iex> Soundex.soundex("Piñata") == Soundex.soundex("Pinata")
+    false
+
+    iex> Soundex.soundex("Piñata") == Soundex.soundex("Piata")
+    true
+
+## TODO
+Cases where the algorithm still does not match
 
 ```elixir
-def deps do
-  [
-    {:soundex, "~> 0.1.0"}
-  ]
-end
+%{algorithm: "E100", row: %{name: "EW-001PH", soundex_code: "E000"}}
+%{algorithm: "E100", row: %{name: "EW-001PA", soundex_code: "E000"}}
+%{algorithm: "E120", row: %{name: "EW-301PJ", soundex_code: "E200"}}
+%{algorithm: "P223", row: %{name: "PICASO 3D LLC", soundex_code: "P224"}}
+%{algorithm: "E100", row: %{name: "EW-001PH", soundex_code: "E000"}}
+%{algorithm: "E100", row: %{name: "EW-001PA", soundex_code: "E000"}}
+%{algorithm: "E120", row: %{name: "EW-301PJ", soundex_code: "E200"}}
+%{algorithm: "P223", row: %{name: "PICASO 3D LLC", soundex_code: "P224"}}
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/soundex>.
-

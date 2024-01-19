@@ -1,6 +1,46 @@
 defmodule Soundex do
+  @moduledoc """
+  Compute Soundex codes for strings.
+
+  Soundex is an algorithm for representing (mainly English) names as short phonetic codes.
+  A Soundex code begins with the first letter of the name, followed by three digits.
+  They are typically used to match like-sounding names.
+
+  For more information, see [the Wikipedia entry](http://en.wikipedia.org/wiki/soundex).
+
+  ## Examples:
+
+      iex> Soundex.soundex("Morris")
+      "M620"
+
+      iex> Soundex.soundex("Harris")
+      "H620"
+
+      iex> Soundex.soundex("Morrison")
+      "M625"
+
+      iex> Soundex.soundex("Smith")
+      "S530"
+
+      iex> Soundex.soundex("Smithie")
+      "S530"
+  """
+
   require Logger
 
+  @doc """
+  Compute the Soundex code of a string.
+
+  For details, see (http://en.wikipedia.org/wiki/soundex)[the Wikipedia entry].
+  The Soundex algorithm is only defined for strings with ASCII characters.
+
+  Returns a string.
+
+  ## Examples:
+
+      iex> Soundex.soundex("Jackson")
+      "J250"
+  """
   def soundex(name) do
     name
     |> String.graphemes()
