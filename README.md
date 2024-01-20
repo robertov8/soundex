@@ -11,19 +11,19 @@ For more information, see [the Wikipedia entry](http://en.wikipedia.org/wiki/sou
 
 ## Examples:
 
-    iex> Soundex.soundex("Morris")
+    iex> SoundexPostgres.soundex("Morris")
     "M620"
     
-    iex> Soundex.soundex("Harris")
+    iex> SoundexPostgres.soundex("Harris")
     "H620"  
 
-    iex> Soundex.soundex("Morrison")
+    iex> SoundexPostgres.soundex("Morrison")
     "M625"
 
-    iex> Soundex.soundex("Smith")
+    iex> SoundexPostgres.soundex("Smith")
     "S530"
 
-    iex> Soundex.soundex("Smithie")
+    iex> SoundexPostgres.soundex("Smithie")
     "S530"           
 
 
@@ -32,31 +32,17 @@ For more information, see [the Wikipedia entry](http://en.wikipedia.org/wiki/sou
 Soundex only encodes letters from the English alphabet. So, for example, 
 punctuation in names is ignored:
 
-    iex> Soundex.soundex("O'Brien") == Soundex.soundex("OBrien")
+    iex> SoundexPostgres.soundex("O'Brien") == SoundexPostgres.soundex("OBrien")
     true
 
 As are spaces:
 
-    iex> Soundex.soundex("Van Dyke") == Soundex.soundex("Vandyke")
+    iex> SoundexPostgres.soundex("Van Dyke") == SoundexPostgres.soundex("Vandyke")
 
 Unicode letters are also ignored:
 
-    iex> Soundex.soundex("Piñata") == Soundex.soundex("Pinata")
+    iex> SoundexPostgres.soundex("Piñata") == SoundexPostgres.soundex("Pinata")
     false
 
-    iex> Soundex.soundex("Piñata") == Soundex.soundex("Piata")
+    iex> SoundexPostgres.soundex("Piñata") == SoundexPostgres.soundex("Piata")
     true
-
-## TODO
-Cases where the algorithm still does not match
-
-```elixir
-%{algorithm: "E100", row: %{name: "EW-001PH", soundex_code: "E000"}}
-%{algorithm: "E100", row: %{name: "EW-001PA", soundex_code: "E000"}}
-%{algorithm: "E120", row: %{name: "EW-301PJ", soundex_code: "E200"}}
-%{algorithm: "P223", row: %{name: "PICASO 3D LLC", soundex_code: "P224"}}
-%{algorithm: "E100", row: %{name: "EW-001PH", soundex_code: "E000"}}
-%{algorithm: "E100", row: %{name: "EW-001PA", soundex_code: "E000"}}
-%{algorithm: "E120", row: %{name: "EW-301PJ", soundex_code: "E200"}}
-%{algorithm: "P223", row: %{name: "PICASO 3D LLC", soundex_code: "P224"}}
-```

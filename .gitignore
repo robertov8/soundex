@@ -26,5 +26,3 @@ soundex-*.tar
 /tmp/
 
 playground.exs
-
-/priv/*.csv

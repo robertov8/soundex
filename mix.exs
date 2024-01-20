@@ -4,7 +4,7 @@ defmodule Soundex.MixProject do
   def project do
     [
       app: :soundex,
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.15",
       name: "Soundex",
       source_url: "https://github.com/robertov8/soundex",
@@ -34,7 +34,8 @@ defmodule Soundex.MixProject do
   defp deps do
     [
       {:excoveralls, "~> 0.18", only: :test},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:nimble_csv, "~> 1.1", only: :test}
     ]
   end
 
